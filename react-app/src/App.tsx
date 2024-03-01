@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Routes/Home'
 import Page1 from './Routes/p1'
@@ -17,12 +17,15 @@ const App: React.FC = () => (
   </Router>
 );
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const app = document.getElementById('appId');
+if (app) {
+const root = ReactDOM.createRoot(app);
+root.render(<React.StrictMode><App /></React.StrictMode>);
+}else{
+  console.error('AppElement not found')
+}
+
+
 
 export { App };
 export { Home };
