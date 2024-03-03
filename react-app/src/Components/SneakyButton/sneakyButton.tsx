@@ -6,9 +6,9 @@ const Sneaky: React.FC = () => {
 
     const mouseMove = (e: React.MouseEvent<HTMLButtonElement>) =>{
         setPosition({
-            x: (window.innerWidth - e.clientX - 80), 
-            y: (window.innerHeight - e.clientY - 80),
-            z: 0
+            x: (e.clientX - 80), 
+            y: (e.clientY - 80),
+            z: 0    
         });
     };
 

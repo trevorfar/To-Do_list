@@ -1,0 +1,15 @@
+
+.horizontal{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+li {
+    list-style-type: none;   
+}
+
+.container {
+    width: 50%;
+    align-items: center;
+}
