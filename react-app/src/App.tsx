@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Routes/Home/Home'
 import TestPage from './Routes/TestPage/TestPage'
 import Navbar from './Components/Navbar/Navbar'
+import Queries from './Routes/Queries/Queries'
 
 const App: React.FC = () => (
   <Router>
@@ -11,6 +12,8 @@ const App: React.FC = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/TestPage" element={<TestPage />} />
+      <Route path="/Queries" element={<Queries />} />
+
       </Routes>
   </Router>
 );
@@ -29,3 +32,4 @@ if (app) {
 export { App };
 export { Home };
 export { TestPage };
+export { Queries }; 
