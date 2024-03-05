@@ -1,8 +1,8 @@
 import React from 'react';
 
+
 const ListInput: React.FC = () => {
 
-    
     const handleClick = async () => {
         const list_name = window.prompt('Enter List name:');
         const user_id = window.prompt('Enter User id:');
@@ -20,23 +20,21 @@ const ListInput: React.FC = () => {
                 console.log('Task added successfully!');
                 const responseData = await response.json();
                 console.log('Response Data:', responseData);
-            } else {    
+
+            } else {
                 console.error('Failed to add task:', response.statusText);
             }
         }
 
-        
-        
     };
-    
-   
+
+
 
     return (
         <div>
             <button onClick={handleClick}>Add List</button>
-            
         </div>
     );
 };
- 
+
 export default ListInput;

@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import './navbar.css'
+import './navbar.css';
+  // import CreateList from './CreateList';
+
 const Navbar: React.FC = () => {
+  // const [listItems, setListItems] = useState<string[]>([]);
+
+  // const addItemToList = (itemName: string) => {
+  //   setListItems((prevItems) => [...prevItems, itemName]);
+  // };
 
   return (
     <div className="navbar">
@@ -9,9 +16,12 @@ const Navbar: React.FC = () => {
         <ul>
           <li>
             <NavLink to={'/Queries'} className="active-link">
-            Home
+              Home
             </NavLink>
           </li>
+          {/* {listItems.map((item, index) => (
+            <CreateList key={index} param1={item} />
+          ))} */}
         </ul>
       </nav>
     </div>

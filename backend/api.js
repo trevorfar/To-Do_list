@@ -86,3 +86,20 @@ app.post('/addList', (req, res) => {
 });
 
 
+
+app.post('/queryList', (req, res) => {
+    const { user_id } = req.body;
+    
+    client.query('SELECT list_name FROM lists WHERE user_id = $1', [user_id], (err, result) => {
+        if (err) {
+            console.error('Error querying database:', err.stack);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+
+        const listNames = result.rows.map(row => row.list_name);
+        console.log(listNames);
+        res.json({ listNames }); 
+    });
+});
+
