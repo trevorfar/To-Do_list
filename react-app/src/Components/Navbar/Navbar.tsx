@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import './navbar.css'
 const Navbar: React.FC = () => {
 
   return (
@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
         <ul>
           <li>
             <NavLink to={'/Queries'} className="active-link">
-              Home
+            Home
             </NavLink>
           </li>
         </ul>

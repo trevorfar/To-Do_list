@@ -68,9 +68,8 @@ app.post('/addList', (req, res) => {
             res.status(500).send('Internal Server Error');
             return;
         }
-        res.send('Task added successfully');
-        
-    });
+
+    console.log("list added correct");
 
     client.query('SELECT list_name FROM lists WHERE user_id = $1', [user_id], (err, result) => {
         if (err) {
@@ -80,10 +79,10 @@ app.post('/addList', (req, res) => {
         }
 
         const listNames = result.rows.map(row => row.list_name);
-        res.json({ listNames }); // Send list names as JSON object
+        console.log(listNames);
+        res.json({ listNames }); 
     });
     });
-
-   
+});
 
 
