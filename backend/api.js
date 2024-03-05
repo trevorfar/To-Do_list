@@ -59,3 +59,38 @@ app.post('/addTask', (req, res) => {
 
 });
 
+app.post('/addList', (req, res) => {
+    const { user_id, list_name } = req.body;
+
+    client.query(`INSERT INTO lists (user_id, list_name) VALUES ($1, $2)`, [user_id, list_name], (err, result) => {
+        if (err) {
+            console.error('Error inserting task:', err.stack);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        res.send('Task added successfully');
+        
+    });
+    });
+
+    app.post('/queryDatabase', (req, res) => {
+        const { user_id } = req.body;
+    
+        client.query('SELECT list_name FROM lists WHERE user_id = $1', [user_id], (err, result) => {
+            if (err) {
+                console.error('Error querying database:', err.stack);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+            res.send(result.rows.map(row => row.list_name)); 
+        });
+    });
+    
+
+    // app.post('/queryDatabase', (req, res) => { 
+    //     const { list_name =}
+    //     client.query('')
+
+
+    // })
+

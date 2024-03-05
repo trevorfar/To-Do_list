@@ -7,7 +7,6 @@ const Queries: React.FC = () => {
 
     return (
         <div>
-
           <Fetch />
           <List />
         </div>
