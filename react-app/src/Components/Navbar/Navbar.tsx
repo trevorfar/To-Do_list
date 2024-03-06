@@ -1,27 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './navbar.css';
-  // import CreateList from './CreateList';
+import QueryDB from '../../Routes/Queries/QueryDB';
 
 const Navbar: React.FC = () => {
-  // const [listItems, setListItems] = useState<string[]>([]);
-
-  // const addItemToList = (itemName: string) => {
-  //   setListItems((prevItems) => [...prevItems, itemName]);
-  // };
-
+  
   return (
     <div className="navbar">
       <nav>
+      <QueryDB user_id={1}/>
         <ul>
           <li>
             <NavLink to={'/Queries'} className="active-link">
               Home
             </NavLink>
           </li>
-          {/* {listItems.map((item, index) => (
-            <CreateList key={index} param1={item} />
-          ))} */}
+        
         </ul>
       </nav>
     </div>
