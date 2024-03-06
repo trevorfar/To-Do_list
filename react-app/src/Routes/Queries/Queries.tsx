@@ -1,7 +1,7 @@
 import React from 'react';
 import Fetch from './Fetch';
 import List from './List';
-import QueryDB from './QueryDB';
+// import QueryDB from './QueryDB';
 const Queries: React.FC = () => {
     
 
@@ -9,7 +9,7 @@ const Queries: React.FC = () => {
         <div>
           <Fetch />
           <List />
-          <QueryDB user_id={1} />
+          {/* <QueryDB user_id={1} /> */}
         </div>
     );
 };
