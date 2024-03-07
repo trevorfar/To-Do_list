@@ -5,7 +5,7 @@ import Home from './Routes/Home/Home'
 import TestPage from './Routes/TestPage/TestPage'
 import Navbar from './Components/Navbar/Navbar'
 import Queries from './Routes/Queries/Queries'
-
+import ListPage from './Components/ListEndpoint/ListPage'
 const App: React.FC = () => (
   <Router>
     <Navbar />
@@ -13,6 +13,7 @@ const App: React.FC = () => (
       <Route path="/" element={<Home />} />
       <Route path="/TestPage" element={<TestPage />} />
       <Route path="/Queries" element={<Queries />} />
+      <Route path="/:listName" element={<ListPage />} />
 
       </Routes>
   </Router>

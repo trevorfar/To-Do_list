@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 
 const ListInput: React.FC = () => {
-    const [state, setState] = useState(0)
-    useEffect(()=>{
-        console.log(state);
-    }, [state])
+   
 
     
 
@@ -26,8 +23,7 @@ const ListInput: React.FC = () => {
                 console.log('List added successfully!');
                 const responseData = await response.json();
                 console.log('Response Data:', responseData);
-                setState(state + 1);
-                console.log(state);
+                
             } else {
                 console.error('Failed to add List:', response.statusText);
             }
@@ -35,12 +31,11 @@ const ListInput: React.FC = () => {
 
     };
 
-
+// RE ROUTE TO THE CREATED LIST, DONT NEED TO RERENDER, IT WILL RERENDER AUTOMATICALLY
 
     return (
         <div>
             <button onClick={handleClick}>Add List</button>
-            <button onClick={() => setState(state+1)}>State</button>;
         </div>
     );
 };
