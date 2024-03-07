@@ -9,7 +9,6 @@ const Queries: React.FC = () => {
         <div>
           <Fetch />
           <List />
-          {/* <QueryDB user_id={1} /> */}
         </div>
     );
 };

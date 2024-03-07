@@ -1,14 +1,17 @@
-import React, {useState } from 'react';
+import React, {useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './navbar.css';
-// import QueryDB from '../../Routes/Queries/QueryDB';
+
+
 
 const Navbar: React.FC = () => {
   const [tasks, setTasks] = useState<string[]>([]);
+  
+  
+  useEffect(() => {
+  const fetchData = async () => {
+  const user_id = 1;
 
-  const handleQuery = async (user_id: number) => {
-    
-    if (user_id) {
         const response = await fetch('http://localhost:3300/queryList', {
             method: 'POST',
             headers: {
@@ -26,24 +29,26 @@ const Navbar: React.FC = () => {
             console.error('Failed to query:', response.statusText);
         }
     }
-    return null;
-};
-  
+    fetchData();
+}, []);
 
 return (
   <div className="navbar">
     <nav>
       <ul>
         <li>
-          <button onClick={() => handleQuery(1)}>Click This</button>
           <NavLink to={'/Queries'} className="active-link">
             Home
           </NavLink>
         </li>
         {tasks.map((listName, index) => (
-          <li key={index}>{listName}</li> 
-        ))}
-      </ul>
+            <li key={index}>
+              <NavLink to={`/${listName}`} className="active-link">
+                {listName}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
     </nav>
   </div>
 );
