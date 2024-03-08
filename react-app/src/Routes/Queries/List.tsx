@@ -31,7 +31,6 @@ const ListInput: React.FC = () => {
 
     };
 
-// RE ROUTE TO THE CREATED LIST, DONT NEED TO RERENDER, IT WILL RERENDER AUTOMATICALLY
 
     return (
         <div>
