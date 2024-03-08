@@ -36,14 +36,13 @@ app.post('/addTask', (req, res) => {
 app.post('/addList', (req, res) => {
     const { user_id, list_name } = req.body;
 
-    client.query(`INSERT INTO lists (user_id, list_name, list_ud) VALUES ($1, $2)`, [user_id, list_name], (err, result) => {
+    client.query(`INSERT INTO lists (user_id, list_name) VALUES ($1, $2)`, [user_id, list_name], (err, result) => {
         if (err) {
             console.error('Error inserting task:', err.stack);
             res.status(500).send('Internal Server Error');
             return;
         }
 
-        console.log("list added correct");
 
         client.query('SELECT list_name FROM lists WHERE user_id = $1', [user_id], (err, result) => {
             if (err) {
@@ -70,7 +69,6 @@ app.post('/queryTasks', (req, res) => {
 
         const tasks = result.rows.map(row => row.task_description);
         res.json({ tasks });
-        console.log(result);
     });
 
 });
