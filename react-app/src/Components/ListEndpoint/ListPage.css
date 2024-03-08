@@ -6,6 +6,12 @@
     margin: 20px;
   }
 
+  .container{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
   .card-container{
     width: auto;
     height: auto;
