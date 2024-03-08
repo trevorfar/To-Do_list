@@ -21,8 +21,7 @@ const ListInput: React.FC = () => {
 
             if (response.ok) {
                 console.log('List added successfully!');
-                const responseData = await response.json();
-                console.log('Response Data:', responseData);
+
                 
             } else {
                 console.error('Failed to add List:', response.statusText);

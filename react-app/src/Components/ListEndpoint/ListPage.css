@@ -40,8 +40,10 @@
     background-color: lightgrey;
     }
     
-    .card-body > .add-task{
-        background-color: blue;
+    .card-body.add-task{
+    background-color: lightblue;
+    cursor: pointer; 
+    width: 270px;
     }
 
   

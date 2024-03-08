@@ -23,7 +23,6 @@
           if (response.ok) {
               console.log('Task Queried successfully!');
               const responseData = await response.json();
-              console.log('Response Data:', responseData);
               setTasks(responseData.listNames);
               } else {
               console.error('Failed to query:', response.statusText);

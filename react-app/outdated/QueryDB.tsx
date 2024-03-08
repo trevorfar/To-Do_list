@@ -18,7 +18,6 @@ const handleQuery = async (user_id: number) => {
         if (response.ok) {
             console.log('Task Queried successfully!');
             const responseData = await response.json();
-            console.log('Response Data:', responseData);
             return responseData;
         } else {
             console.error('Failed to query:', response.statusText);
