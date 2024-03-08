@@ -1,0 +1,41 @@
+.card {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .card-container{
+    width: auto;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .card-container h1 {
+    justify-content: center;
+    text-align: center;
+
+  }
+
+  
+  .card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 5px;
+    background-color: lightgrey;
+    }
+    
+    .card-body > .add-task{
+        background-color: blue;
+    }
+
+  

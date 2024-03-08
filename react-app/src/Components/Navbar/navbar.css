@@ -7,9 +7,6 @@
 
 .active-link {
   color: white;
-  border: solid 2px #FC5185;
-  border-radius: 4px;
-  transition: border-width 0.3s linear;
 }
 
 .active-link:hover {

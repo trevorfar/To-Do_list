@@ -2,7 +2,6 @@ import * as React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Routes/Home/Home'
-import TestPage from './Routes/TestPage/TestPage'
 import Navbar from './Components/Navbar/Navbar'
 import Queries from './Routes/Queries/Queries'
 import ListPage from './Components/ListEndpoint/ListPage'
@@ -11,7 +10,6 @@ const App: React.FC = () => (
     <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/TestPage" element={<TestPage />} />
       <Route path="/Queries" element={<Queries />} />
       <Route path="/:listName" element={<ListPage />} />
 
@@ -32,5 +30,4 @@ if (app) {
 
 export { App };
 export { Home };
-export { TestPage };
 export { Queries }; 
