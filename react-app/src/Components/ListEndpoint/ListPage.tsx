@@ -4,7 +4,6 @@ import './ListPage.css'
 const ListPage: React.FC = () => {
     const { listName } = useParams<{ listName: string }>();
     const [list, setList] = useState<string[]>([]);
-    const [index, setIndex] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,20 +28,18 @@ const ListPage: React.FC = () => {
     }, [listName]);
     
 
-    const handleClick = async (index: number) => {
+    const handleClick = async () => {
         const description = window.prompt('Enter task description:');
         const user_id = window.prompt('Enter user_id');
 
 
         if (description && user_id) {
-            const newTaskId = index;
-            setIndex(prevIndex => prevIndex + 1);
             const response = await fetch('http://localhost:3300/addTask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ user_id, description, list_name: listName, task_id: newTaskId })
+                body: JSON.stringify({ user_id, description, list_name: listName })
             });
             if (response.ok) {
                 console.log('Task added successfully!');
@@ -54,17 +51,16 @@ const ListPage: React.FC = () => {
         }
     };
     
-    const delTask = async (index: number) => {
+    const delTask = async (index: number, item: string) => {
         const user_id = window.prompt('Enter user_id');
-        const task_id = index;
-        setIndex(task_id);
-        if (user_id && task_id) {
+        console.log(item);
+        if (user_id && item) {
             const response = await fetch('http://localhost:3300/delTask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ user_id, task_id })
+                body: JSON.stringify({ user_id, item })
             });
             if (response.ok) {
                 console.log('Task removed successfully!');
@@ -72,11 +68,9 @@ const ListPage: React.FC = () => {
                 setList(newList);
             } else {
                 console.error('Failed to remove task:', response.statusText);
-                console.log(task_id);
             }
         }
     }
-
 
     return (
         <>
@@ -84,16 +78,16 @@ const ListPage: React.FC = () => {
                 <div className="card-container">
                     <h1>Tasks</h1>
                     <div className="card">
-                        {list.length === 0 ? <li className="card-body">No tasks added</li> : null}
+                        {list.length === 0 ? <li className="card-body"><div className="task-content">No tasks added</div></li> : null}
                         {list.map((item, index) => (
                             <li key={`item-${index}`} className="card-body">
                                 <div className="task-content">{item}</div>
                                 <div className="delete-container">
-                                    <button className="delete" onClick={() => delTask(index)}>-</button>
+                                    <button className="delete" onClick={() => delTask(index, item)}>-</button>
                                     </div>
                                     </li>
                         ))}
-                        <button className="card-body add-task" onClick={() => handleClick(index)}> + </button>
+                        <button className="card-body add-task" onClick={handleClick}> + </button>
                     </div>
                 </div>
             </div>
