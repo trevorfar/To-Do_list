@@ -30,7 +30,7 @@
   
   .card-body {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 40px;
     border: 1px solid #ccc;
@@ -44,6 +44,29 @@
     background-color: lightblue;
     cursor: pointer; 
     width: 270px;
+    flex-grow: 1;
+    padding-left: 10px;
+    justify-content: center;  
     }
 
   
+    .task-content{
+      flex-grow: 1;
+      padding-left: 10px;
+    }
+  .delete{
+    display: flex;
+    background-color: lightcoral;
+    border-radius: 6px;
+    border-width: 1px;
+    width: 15px;
+    height: 15px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .delete-container{
+    padding-right: 10px;
+  }

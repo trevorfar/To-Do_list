@@ -57,7 +57,20 @@ app.post('/addList', (req, res) => {
     });
 });
 
+app.post('/delTask', (req, res) =>{
+    const { user_id, task_id } = req.body;
+    client.query('DELETE FROM tasks WHERE user_id =$1 AND task_id = $2', [user_id, task_id], (err, result) =>{
+        if (err) {
+            console.error('Error deleting task', err.stack);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        else {
+            res.send('Task deleted successfully');
+        }
+    })
 
+})
 app.post('/queryTasks', (req, res) => {
     const { list_name } = req.body;
     client.query('SELECT task_description FROM tasks WHERE list_name = $1', [list_name], (err, result) => {
