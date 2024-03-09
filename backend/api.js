@@ -21,7 +21,7 @@ app.listen(3300, () => {
 
 app.post('/addTask', (req, res) => {
     const { user_id, description, list_name } = req.body;
-
+    
         client.query(`INSERT INTO tasks (user_id, list_name, task_description) VALUES ($1, $2, $3)`, [user_id, list_name, description], (err, result) => {
             if (err) {
                 console.error('Error inserting task:', err.stack);
@@ -58,8 +58,8 @@ app.post('/addList', (req, res) => {
 });
 
 app.post('/delTask', (req, res) =>{
-    const { user_id, task_id } = req.body;
-    client.query('DELETE FROM tasks WHERE user_id =$1 AND task_id = $2', [user_id, task_id], (err, result) =>{
+    const { user_id, item } = req.body;
+    client.query('DELETE FROM tasks WHERE user_id =$1 AND task_description = $2', [user_id, item], (err, result) =>{
         if (err) {
             console.error('Error deleting task', err.stack);
             res.status(500).send('Internal Server Error');

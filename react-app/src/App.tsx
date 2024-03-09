@@ -18,7 +18,6 @@ const App: React.FC = () => (
 );
 
 const app = document.getElementById('appId');
-
 if (app) {
   const root = ReactDOM.createRoot(app);
   root.render(<React.StrictMode><App /></React.StrictMode>);
