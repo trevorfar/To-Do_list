@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './ListPage.css'
 const ListPage: React.FC = () => {
+
     const { listName } = useParams<{ listName: string }>();
     const [list, setList] = useState<string[]>([]);
+    const [listState, deleteListState] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,13 +27,12 @@ const ListPage: React.FC = () => {
             }
         }
         fetchData();
-    }, [listName]);
+    }, [listName, listState]);
     
 
     const handleClick = async () => {
         const description = window.prompt('Enter task description:');
         const user_id = window.prompt('Enter user_id');
-
 
         if (description && user_id) {
             const response = await fetch('http://localhost:3300/addTask', {
@@ -72,6 +73,27 @@ const ListPage: React.FC = () => {
         }
     }
 
+    const delList = async (list_name: string | undefined) => {
+        const user_id = window.prompt('Enter user_id');
+        
+        if (user_id && list_name) {
+            const response = await fetch('http://localhost:3300/delList', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_id, list_name })
+            });
+            if (response.ok) {
+                console.log('list removed successfully!');
+                deleteListState(true);
+            } else {
+                console.error('Failed to remove list:', response.statusText);
+                deleteListState(false);
+            }   
+        }
+    }
+
     return (
         <>
             <div className="container">
@@ -88,6 +110,7 @@ const ListPage: React.FC = () => {
                                     </li>
                         ))}
                         <button className="card-body add-task" onClick={handleClick}> + </button>
+                        <button className="card-body add-task" onClick={() => delList(listName)}> DELETE LIST </button>
                     </div>
                 </div>
             </div>
