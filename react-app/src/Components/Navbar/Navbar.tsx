@@ -11,7 +11,6 @@
     useEffect(() => {
     const fetchData = async () => {
     const user_id = 1;
-
           const response = await fetch('http://localhost:3300/queryList', {
               method: 'POST',
               headers: {
