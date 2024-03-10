@@ -1,6 +1,6 @@
     import { useState, useEffect } from 'react';
 
-    const useTaskList = (listName: string): { list: string[], handleClick: () => void, delTask: (index: number, item: string) => void, delList: (listName: string ) => void } => {
+    const useTaskList = (listName: string): { list: string[], handleClick: () => void, delTask: (index: number, item: string) => void, delList: (listName: string ) => void, switchList: () => void} => {
         const [list, setList] = useState<string[]>([]);
         const [listState, deleteListState] = useState<boolean>(false);
         const [deleted, setDeleted] = useState<boolean>(false);
@@ -70,7 +70,8 @@
                 }
             }
         }
-        const switchTask = async () => {
+
+        const switchList = async (): Promise<void> => {
             const user_id = 1;
                   const response = await fetch('http://localhost:3300/queryList', {
                       method: 'POST',
@@ -83,7 +84,8 @@
                   if (response.ok) {
                       console.log('Task Queried successfully!');
                       const responseData = await response.json();
-
+                      console.log(responseData);
+                      return responseData;
                       } else {
                       console.error('Failed to query:', response.statusText);
                   }
@@ -110,7 +112,7 @@
             }
         }
 
-        return { list, handleClick, delTask, delList };
+        return { list, handleClick, delTask, delList, switchList };
     };
 
     export default useTaskList;

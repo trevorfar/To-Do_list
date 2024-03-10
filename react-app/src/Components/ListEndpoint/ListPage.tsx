@@ -7,14 +7,14 @@ import './ListPage.css'
 
 const ListPage: React.FC = () => {
     const { listName = "" } = useParams<{ listName: string }>() ?? { listName: "" };
-    const { list, delTask, delList } = useTaskList(listName);
+    const { list, delTask, delList, switchList } = useTaskList(listName);
 
     return (    
         <>
             <div className="container">
                 <div className="card-container">
                     <h1>Tasks</h1>
-                    <TaskList list={list} delTask={delTask} />
+                    <TaskList list={list} delTask={delTask} switchList={switchList} />
                     <DeleteListButton listName={listName} delList={delList} />
                     <button > Switch List</button>
                 </div>

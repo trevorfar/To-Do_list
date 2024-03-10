@@ -6,11 +6,12 @@ import AddTaskForm from './AddTask';
 interface TaskListProps {
     list: string[];
     delTask: (index: number, item: string) => void;
+    switchList: () => Promise<void>;
 }
 
-const TaskList: React.FC<TaskListProps> = () => {
+const TaskList: React.FC<TaskListProps> = ({ delTask, switchList}) => {
     const { listName = "" } = useParams<{ listName: string }>() ?? { listName: "" };
-    const { handleClick, list: updatedList, delTask } = useTaskList(listName);
+    const { handleClick, list: updatedList } = useTaskList(listName);
 
     useEffect(() => {   
         console.log('Updated List:', updatedList);
@@ -28,6 +29,7 @@ const TaskList: React.FC<TaskListProps> = () => {
                 </li>
             ))}
             <AddTaskForm listName={listName} handleClick={handleClick} />
+            <button onClick={switchList}> CLICK </button>
         </div>
     );
 };
