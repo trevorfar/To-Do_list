@@ -2,12 +2,14 @@ const express = require('express');
 const client = require('./get');
 const cors = require('cors');
 const taskRoutes = require('./routes');
+const login = require('./auth')
 const bodyParser = require('body-parser');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(taskRoutes);
+app.use(login);
 
 app.listen(3300, () => {
     client.connect((err) => {

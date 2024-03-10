@@ -1,12 +1,15 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const express = require('express');
+const router = express.Router();
+const {validateUser } = require('./userValidation');
 
 // Secret key for JWT
 const secretKey = process.env.secret_key;
 
 // Generate a JWT token
 function generateToken(user) {
-  return jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '1h' });
+  return jwt.sign({ id: user.id, username: user.username, user_id: user.user_id }, secretKey, { expiresIn: '1h' });
 }
 
 // Verify a JWT token
@@ -19,20 +22,21 @@ function verifyToken(token) {
 }
 
 // Example route for login
-app.post('/login', (req, res) => {
+router.post('/login', (req, res) => {
   // Validate user credentials
   // Assuming user is an object with id and username properties
   const user = validateUser(req.body.username, req.body.password);
 
   if (user) {
     const token = generateToken(user);
-    res.json({ token });
+    console.log(user.user_id);
+    res.json({ token, user_id: user.user_id });
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
   }
 });
 
-app.get('/profile', (req, res) => {
+router.get('/profile', (req, res) => {
   const token = req.headers.authorization;
 
   if (token) {
@@ -46,3 +50,4 @@ app.get('/profile', (req, res) => {
     res.status(401).json({ message: 'No token provided' });
   }
 });
+module.exports = router;
