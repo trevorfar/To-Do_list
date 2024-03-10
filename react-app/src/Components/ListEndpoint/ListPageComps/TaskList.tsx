@@ -9,9 +9,9 @@ interface TaskListProps {
     switchList: () => Promise<void>;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ delTask, switchList}) => {
+const TaskList: React.FC<TaskListProps> = ({  switchList}) => {
     const { listName = "" } = useParams<{ listName: string }>() ?? { listName: "" };
-    const { handleClick, list: updatedList } = useTaskList(listName);
+    const { handleClick, list: updatedList, delTask } = useTaskList(listName);
 
     useEffect(() => {   
         console.log('Updated List:', updatedList);
