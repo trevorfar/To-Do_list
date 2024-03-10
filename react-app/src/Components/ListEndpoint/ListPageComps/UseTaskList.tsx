@@ -1,4 +1,5 @@
     import { useState, useEffect } from 'react';
+    import { Redirect } from 'react-router-dom';
 
     const useTaskList = (listName: string): { list: string[], handleClick: () => void, delTask: (index: number, item: string) => void, delList: (listName: string ) => void, switchList: () => Promise<void>} => {
         const [list, setList] = useState<string[]>([]);
@@ -105,6 +106,7 @@
                 if (response.ok) {
                     console.log('list removed successfully!');
                     deleteListState(true);
+                    // return <Redirect to="/Home" />;
                 } else {
                     console.error('Failed to remove list:', response.statusText);
                     deleteListState(false);
