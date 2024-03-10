@@ -7,7 +7,7 @@ interface AddTaskFormProps {
 
 const AddTaskForm: React.FC<AddTaskFormProps> = ({ handleClick }) => {
     return (
-        <button className="card-body add-task" onClick={handleClick}> + </button>
+        <button className="card-body add-task" onClick={handleClick}> <b>+</b> </button>
     );
 };
 

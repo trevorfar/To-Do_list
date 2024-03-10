@@ -14,12 +14,12 @@ const ListPage: React.FC = () => {
         <>
             <div className="container">
                 <div className="card-container">
-                    <h1>Tasks</h1>
                     <TaskList list={list} delTask={delTask} /*switchList={switchList}*/ />
+                    <div className="outside-card">
                     <DropdownButton />
-
                     <DeleteListButton listName={listName} delList={delList} />
                     {/*<button onClick={switchList}> Switch List</button>*/}
+                </div>
                 </div>
             </div>
         </>

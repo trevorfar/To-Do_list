@@ -7,7 +7,7 @@ interface DeleteListButtonProps {
 
 const DeleteListButton: React.FC<DeleteListButtonProps> = ({ listName = "", delList }) => {
     return (
-        <button className="card-body add-task" onClick={() => delList(listName)}> DELETE LIST </button>
+        <button className="card-body del-task" onClick={() => delList(listName)}> <p>Delete list</p> </button>
     );
 };
 

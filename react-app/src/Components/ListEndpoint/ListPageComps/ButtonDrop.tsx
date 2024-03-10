@@ -41,7 +41,7 @@ const [tasks, setTasks] = useState<string[]>([]);
             <ul>
             {tasks.map((listName, index) => (
               <li key={index}>
-                <Link className="active-link"to={`/${listName}`}>
+                <Link className="active-link-drop"to={`/${listName}`}>
                   <div className="dropdown-item">{listName}</div>
                   </Link>
               </li>
@@ -50,6 +50,7 @@ const [tasks, setTasks] = useState<string[]>([]);
         </div>
       )}
     </div>
+    
   );
 }
 

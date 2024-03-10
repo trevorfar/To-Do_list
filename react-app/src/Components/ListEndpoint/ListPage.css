@@ -3,6 +3,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
+    background-color: #C6FAD2;
+
     margin: 20px;
   }
 
@@ -11,6 +13,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
+    
   }
   .card-container{
     width: auto;
@@ -19,8 +22,17 @@
     border-radius: 5px;
     padding: 10px;
     margin: 20px;
-  }
+    align-items: center;
+    justify-content: center;
 
+  }
+  .outside-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+  }
   .card-container h1 {
     justify-content: center;
     text-align: center;
@@ -37,27 +49,45 @@
     border-radius: 5px;
     overflow: hidden;
     margin: 5px;
-    background-color: lightgrey;
+    background-color: #F6FFEE;
+    border: 1px solid black;
+
     }
     
     .card-body.add-task{
-    background-color: lightblue;
+    background-color: #f8c8c0;
     cursor: pointer; 
     width: 270px;
     flex-grow: 1;
     padding-left: 10px;
     justify-content: center;  
     }
+    .card-body.add-task:hover{
+      background-color: #f5b3a7;
+
+    }
 
   
     .task-content{
       flex-grow: 1;
       padding-left: 10px;
+
+    }
+
+    .card-body.del-task{
+      background-color: #F48882;
+      border-radius: 30px;
+      cursor: pointer;
+      border: 1 solid black;
+      font-size: 15px; /* Adjust the font size */
+      overflow: hidden;
+      padding: 10px;
     }
   .delete{
     display: flex;
-    background-color: lightcoral;
+    background-color: #F48882;
     border-radius: 6px;
+    border: 1 solid black;
     border-width: 1px;
     width: 15px;
     height: 15px;
@@ -65,7 +95,13 @@
     text-align: center;
     align-items: center;
     cursor: pointer;
+
   }
+  .delete:hover{
+    background-color: #f5b3a7;
+
+  }
+
 
   .delete-container{
     padding-right: 10px;
