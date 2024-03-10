@@ -70,3 +70,7 @@
   .delete-container{
     padding-right: 10px;
   }
+
+  ul{
+  list-style: none;
+} 

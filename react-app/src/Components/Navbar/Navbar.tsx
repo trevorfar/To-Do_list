@@ -39,17 +39,17 @@
               Home
             </NavLink>
           </li>
-          {tasks.map((listName, index) => (
-              <li key={index}>
-                <NavLink to={`/${listName}`} className="active-link">
-                  {listName}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          {tasks.length > 0 && (
+            <li>
+              <NavLink to={`/${tasks[0]}`} className="active-link">
+                {tasks[0]}
+              </NavLink>
+            </li>
+          )}
+        </ul>
       </nav>
     </div>
   );
-  };
+  };  
 
   export default Navbar;

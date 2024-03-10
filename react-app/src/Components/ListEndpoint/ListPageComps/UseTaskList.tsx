@@ -1,6 +1,6 @@
     import { useState, useEffect } from 'react';
 
-    const useTaskList = (listName: string): { list: string[], handleClick: () => void, delTask: (index: number, item: string) => void, delList: (listName: string ) => void, switchList: () => void} => {
+    const useTaskList = (listName: string): { list: string[], handleClick: () => void, delTask: (index: number, item: string) => void, delList: (listName: string ) => void, switchList: () => Promise<void>} => {
         const [list, setList] = useState<string[]>([]);
         const [listState, deleteListState] = useState<boolean>(false);
         const [deleted, setDeleted] = useState<boolean>(false);

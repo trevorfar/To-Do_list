@@ -1,0 +1,7 @@
+.active-link {
+    color: white;
+  }
+  
+  .active-link:hover {
+    border-width: 6px;
+  }
