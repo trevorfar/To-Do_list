@@ -1,12 +1,23 @@
-require('dotenv').config();
-const { Client } = require('pg');
+const express = require('express');
+const client = require('./get');
+const cors = require('cors');
+const taskRoutes = require('./routes');
+const bodyParser = require('body-parser');
 
-const client = new Client({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-})
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+app.use(taskRoutes);
 
-module.exports = client
+app.listen(3300, () => {
+    client.connect((err) => {
+        if (err) {
+            console.error('Error connecting to PostgreSQL:', err.stack);
+            return;
+        }
+        console.log("Server is now listening at port 3300");
+    });
+});
+
+
+

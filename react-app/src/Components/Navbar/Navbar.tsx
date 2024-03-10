@@ -35,7 +35,7 @@
       <nav>
         <ul>
           <li>
-            <NavLink to={'/Queries'} className="active-link">
+            <NavLink to={'/'} className="active-link">
               Home
             </NavLink>
           </li>

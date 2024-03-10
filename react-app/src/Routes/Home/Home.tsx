@@ -1,19 +1,17 @@
+import LoginForm from '../../Components/Login/LoginFormt';
 import './Home.css';
-
-//Make button that creates a new "page"
-//Add page to navbar
-//Create Postgre database to allow this to happen 
+import React from 'react'
 
 const Home: React.FC = () =>{
   return (
     <>
     <p>Create new List</p>
+
+    <p>hey</p>
+    <LoginForm />
     </>
   )
 }
 
-Home.defaultProps = {
-  title: 'Default Title',
-};
 
 export default Home

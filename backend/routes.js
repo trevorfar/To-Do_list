@@ -1,25 +1,9 @@
 const express = require('express');
-const client = require('./server');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const client = require('./get');
+const router = express.Router();
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
 
-app.listen(3300, () => {
-    client.connect((err) => {
-        if (err) {
-            console.error('Error connecting to PostgreSQL:', err.stack);
-            return;
-        }
-        console.log("Server is now listening at port 3300");
-    });
-});
-
-// WORKS BY INCREMENTING TASK ORDER BASED ON MAXIMUM TASKS. PLEASE NOTE, I HAVE IT HARD CODED TO WORK FOR TESTING, ONCE I IMPLEMENT USER LOGIN I WILL FIX THIS 
-
-app.post('/addTask', (req, res) => {
+router.post('/addTask', (req, res) => {
     const { user_id, description, list_name } = req.body;
     
         client.query(`INSERT INTO tasks (user_id, list_name, task_description) VALUES ($1, $2, $3)`, [user_id, list_name, description], (err, result) => {
@@ -33,7 +17,7 @@ app.post('/addTask', (req, res) => {
     });
 
 
-app.post('/addList', (req, res) => {
+router.post('/addList', (req, res) => {
     const { user_id, list_name } = req.body;
 
     client.query(`INSERT INTO lists (user_id, list_name) VALUES ($1, $2)`, [user_id, list_name], (err, result) => {
@@ -57,7 +41,7 @@ app.post('/addList', (req, res) => {
     });
 });
 
-app.post('/delTask', (req, res) =>{
+router.post('/delTask', (req, res) =>{
     const { user_id, item } = req.body;
     client.query('DELETE FROM tasks WHERE user_id =$1 AND task_description = $2', [user_id, item], (err, result) =>{
         if (err) {
@@ -71,7 +55,7 @@ app.post('/delTask', (req, res) =>{
     })
 
 })
-app.post('/delList', (req, res) =>{
+router.post('/delList', (req, res) =>{
     const { user_id, list_name } = req.body;
     console.log(list_name);
     client.query('DELETE FROM lists WHERE user_id = $1 AND list_name = $2', [user_id, list_name], (err, result) =>{
@@ -86,7 +70,7 @@ app.post('/delList', (req, res) =>{
     })
 
 })
-app.post('/queryTasks', (req, res) => {
+router.post('/queryTasks', (req, res) => {
     const { list_name } = req.body;
     client.query('SELECT task_description FROM tasks WHERE list_name = $1', [list_name], (err, result) => {
         if (err) {
@@ -101,7 +85,7 @@ app.post('/queryTasks', (req, res) => {
 
 });
 
-app.post('/queryList', (req, res) => {
+router.post('/queryList', (req, res) => {
     const { user_id } = req.body;
 
     client.query('SELECT list_name FROM lists WHERE user_id = $1', [user_id], (err, result) => {
@@ -116,3 +100,5 @@ app.post('/queryList', (req, res) => {
     });
 });
 
+
+module.exports = router;
