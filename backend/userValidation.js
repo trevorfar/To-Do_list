@@ -1,18 +1,19 @@
 // userController.js
+const client = require('./get');
 
-const { Pool } = require('pg');
-const pool = new Pool();
 
 async function findUserByUsername(username) {
-    const query = 'SELECT * FROM users WHERE username = $1';
+    const query = 'SELECT id, username, password FROM users WHERE username = $1';
     const values = [username];
-    const result = await pool.query(query, values);
+    const result = await client.query(query, values);
+    console.log(result.rows[0]);
     return result.rows[0]; // Assuming there's only one user with this username
 }
 
 
 
 async function validateUser(username, password) {
+   
     const user = await findUserByUsername(username);
     if (!user) {
         return null; // User not found

@@ -8,8 +8,8 @@ const {validateUser } = require('./userValidation');
 const secretKey = process.env.secret_key;
 
 // Generate a JWT token
-function generateToken(user) {
-  return jwt.sign({ id: user.id, username: user.username, user_id: user.user_id }, secretKey, { expiresIn: '1h' });
+function generateToken(user, user_id) {
+  return jwt.sign({ id: user.id, username: user.username }, secretKey, { expiresIn: '1h' }); //, 
 }
 
 // Verify a JWT token
@@ -22,15 +22,18 @@ function verifyToken(token) {
 }
 
 // Example route for login
-router.post('/login', (req, res) => {
+router.post('/login', async(req, res) => {
   // Validate user credentials
   // Assuming user is an object with id and username properties
-  const user = validateUser(req.body.username, req.body.password);
+  const user = await validateUser(req.body.Username, req.body.Password);
+  console.log(user);
 
   if (user) {
-    const token = generateToken(user);
-    console.log(user.user_id);
-    res.json({ token, user_id: user.user_id });
+    const token = generateToken(user, user.id);
+    console.log(token);
+    res.json({ token, user_id: user.id }); //, 
+    console.log(user.id);
+
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
   }
