@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+
 import useTaskList from './UseTaskList';
 import AddTaskForm from './AddTask';
 
 interface TaskListProps {
-    list: string[];
     delTask: (index: number, item: string) => void;
+    listName: string;
+    list: string[];
 }
 
-const TaskList: React.FC<TaskListProps> = ({list}) => {
-    const { listName = "" } = useParams<{ listName: string }>() ?? { listName: "" };
+const TaskList: React.FC<TaskListProps> = ({list, listName}) => {
+    //HERE
+
     const { handleClick, delTask } = useTaskList(listName);
 
     useEffect(() => {   
-        console.log('Updated List:', list);
-    }, [list]);
+        console.log('Updated List:', listName, list);
+    }, [listName, list]);
 
     return (
         <div className="card">
