@@ -7,8 +7,13 @@
   const Navbar: React.FC = () => {
     const [tasks, setTasks] = useState<string[]>([]);
     const testButton =  () => {
-      console.log(localStorage.getItem('token'));
-      console.log(localStorage.getItem('user_id'));
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if(key!=null){
+        const value = localStorage.getItem(key);
+        console.log(`${key}: ${value}`);
+      }
+    }
     }
   
     const scaryTestButton = () => {

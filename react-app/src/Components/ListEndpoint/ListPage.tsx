@@ -12,6 +12,8 @@ interface ListPageProps {
 
 const ListPage: React.FC<ListPageProps> = ({listName, lists}) => {
     const { list, delTask, delList  } = useTaskList(listName);
+    
+    
    
     return (    
         <>

@@ -10,7 +10,6 @@ interface TaskListProps {
 }
 
 const TaskList: React.FC<TaskListProps> = ({list, listName}) => {
-    //HERE
 
     const { handleClick, delTask } = useTaskList(listName);
 

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
 import './dropDown.css'
 
 interface ButtonDropDownProps {
   lists: string[];
-  
 }
 
 const DropdownButton: React.FC<ButtonDropDownProps> = ({lists}) => {
@@ -14,6 +12,11 @@ const DropdownButton: React.FC<ButtonDropDownProps> = ({lists}) => {
   };
 
  
+  const printIndex = (index: number) => {
+    localStorage.setItem('index', String(index));
+  }
+
+
   return (
     <div className="dropdown">
       <button onClick={toggleDropdown} className="dropdown-button">
@@ -23,11 +26,9 @@ const DropdownButton: React.FC<ButtonDropDownProps> = ({lists}) => {
         <div className="dropdown-menu">
             <ul>
             {lists.map((listName, index) => (
-              <li key={index}>
-                <Link className="active-link-drop"to={`/ListsHome`}>
-                  <div className="dropdown-item">{listName}</div>
-                  </Link>
-              </li>
+              <li key={index} className="active-link-drop" onClick={() => { printIndex(index);  }}>
+              <div className="dropdown-item">{listName}</div>
+                  </li>
             ))}
 
           </ul>
