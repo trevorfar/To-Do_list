@@ -10,7 +10,7 @@
     
     useEffect(() => {
     const fetchData = async () => {
-    const user_id = 1;
+    const user_id = localStorage.getItem('user_id');
           const response = await fetch('http://localhost:3300/queryList', {
               method: 'POST',
               headers: {

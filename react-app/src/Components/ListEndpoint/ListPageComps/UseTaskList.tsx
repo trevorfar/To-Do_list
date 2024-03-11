@@ -30,7 +30,7 @@
 
         const handleClick = async () => {
             const description = window.prompt('Enter task description:');
-            const user_id = window.prompt('Enter user_id');
+            const user_id = localStorage.getItem('user_id');
 
             if (description && user_id) {
                 const response = await fetch('http://localhost:3300/addTask', {
@@ -51,7 +51,7 @@
         };
 
         const delTask = async (index: number, item: string) => {
-            const user_id = window.prompt('Enter user_id');
+            const user_id = localStorage.getItem('user_id');
             console.log(item);
             if (user_id && item) {
                 const response = await fetch('http://localhost:3300/delTask', {
@@ -73,8 +73,8 @@
         }
 
         const switchList = async (): Promise<void> => {
-            const user_id = 1;
-                  const response = await fetch('http://localhost:3300/queryList', {
+            const user_id = localStorage.getItem('user_id');
+            const response = await fetch('http://localhost:3300/queryList', {
                       method: 'POST',
                       headers: {
                           'Content-Type': 'application/json'
@@ -93,7 +93,7 @@
               }
         
         const delList = async (list_name: string) => {
-            const user_id = window.prompt('Enter user_id');
+            const user_id = localStorage.getItem('user_id');
             
             if (user_id && list_name) {
                 const response = await fetch('http://localhost:3300/delList', {

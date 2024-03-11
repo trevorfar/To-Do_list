@@ -8,7 +8,7 @@ const ListInput: React.FC = () => {
 
     const handleClick = async () => {
         const list_name = window.prompt('Enter List name:');
-        const user_id = window.prompt('Enter User id:');
+        const user_id = localStorage.getItem('user_id');
 
         if (list_name && user_id) {
             const response = await fetch('http://localhost:3300/addList', {

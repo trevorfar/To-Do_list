@@ -2,7 +2,7 @@ import React from 'react';
 
 const TaskInput: React.FC = () => {
     const handleClick = async () => {
-        const user_id = window.prompt('Enter user_id');
+        const user_id = localStorage.getItem('user_id');
         const description = window.prompt('Enter task description:');
         const list_name = window.prompt('Enter list name to add to')
 

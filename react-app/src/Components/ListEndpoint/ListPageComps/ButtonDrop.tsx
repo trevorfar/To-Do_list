@@ -12,8 +12,8 @@ const [tasks, setTasks] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-    const user_id = 1;
-          const response = await fetch('http://localhost:3300/queryList', {
+      const user_id = localStorage.getItem('user_id');
+      const response = await fetch('http://localhost:3300/queryList', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
@@ -31,6 +31,8 @@ const [tasks, setTasks] = useState<string[]>([]);
       }
       fetchData();
   }, []);
+
+ 
   return (
     <div className="dropdown">
       <button onClick={toggleDropdown} className="dropdown-button">
@@ -46,6 +48,7 @@ const [tasks, setTasks] = useState<string[]>([]);
                   </Link>
               </li>
             ))}
+
           </ul>
         </div>
       )}
