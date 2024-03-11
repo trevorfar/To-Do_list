@@ -6,16 +6,6 @@ import Navbar from './Components/Navbar/Navbar'
 import Queries from './Routes/Queries/Queries'
 import ListPage from './Components/ListEndpoint/ListPage'
 
-const PrivateRoute: React.FC<{ path: string, element: React.ReactNode }> = ({ path, element }) => {
-  const token = localStorage.getItem('token');
-
-  if (!token) {
-    return <Navigate to="/" />;
-  }
-  
-
-  return <Route path={path} element={element} />;
-};
 
 const App: React.FC = () => (
   <Router>
@@ -31,6 +21,7 @@ const App: React.FC = () => (
 const app = document.getElementById('appId');
 if (app) {
   const root = ReactDOM.createRoot(app);
+
   root.render(<React.StrictMode><App /></React.StrictMode>);
 } else {
   console.error('AppElement not found')
