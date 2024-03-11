@@ -72,7 +72,7 @@
             }
         }
 
-        const switchList = async (): Promise<void> => {
+        const switchList = async () => {
             const user_id = localStorage.getItem('user_id');
             const response = await fetch('http://localhost:3300/queryList', {
                       method: 'POST',

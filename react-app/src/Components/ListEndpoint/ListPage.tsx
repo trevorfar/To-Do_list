@@ -1,16 +1,17 @@
 import React from 'react';
-import { useParams, useState } from 'react-router-dom';
 import TaskList from '../ListEndpoint/ListPageComps/TaskList';
 import DeleteListButton from '../ListEndpoint/ListPageComps/DeleteList';
 import useTaskList from '../ListEndpoint/ListPageComps/UseTaskList';
 import DropdownButton from './ListPageComps/ButtonDrop';
 import './ListPage.css'
 
-const ListPage: React.FC = () => {
-    const { listName = "" } = useParams<{ listName: string }>() ?? { listName: "" };
-    const { list, delTask, delList } = useTaskList(listName);
-    const [user_id, setUser_id] = useState("");
+interface ListPageProps { 
+    listName: string;
+}
 
+const ListPage: React.FC<ListPageProps> = ({listName}) => {
+    const { list, delTask, delList  } = useTaskList(listName);
+   
     return (    
         <>
             <div className="container">

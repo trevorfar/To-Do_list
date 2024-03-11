@@ -41,8 +41,8 @@
           </li>
           {tasks.length > 0 && (
             <li>
-              <NavLink to={`/${tasks[0]}`} className="active-link">
-                {tasks[0]}
+              <NavLink to={`/ListsHome`} className="active-link">
+                Lists
               </NavLink>
             </li>
           )}

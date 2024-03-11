@@ -1,11 +1,11 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Routes/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
 import Queries from './Routes/Queries/Queries'
 import ListPage from './Components/ListEndpoint/ListPage'
-
+import ListsHome from './Components/ListEndpoint/ListsHome'
 
 const App: React.FC = () => (
   <Router>
@@ -13,6 +13,7 @@ const App: React.FC = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Queries" element={<Queries />} />
+      <Route path="/ListsHome" element={<ListsHome/>} />
       <Route path="/:listName" element={<ListPage />} />
       </Routes>
   </Router>
