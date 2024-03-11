@@ -6,7 +6,7 @@ interface ButtonDropDownProps {
   lists: string[];
 }
 
-const DropdownButton: React.FC<ButtonDropDownProps> = ( {lists}) => {
+const DropdownButton: React.FC<ButtonDropDownProps> = ({lists}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);

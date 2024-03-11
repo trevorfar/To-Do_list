@@ -6,7 +6,15 @@
 
   const Navbar: React.FC = () => {
     const [tasks, setTasks] = useState<string[]>([]);
-    
+    const testButton =  () => {
+      console.log(localStorage.getItem('token'));
+      console.log(localStorage.getItem('user_id'));
+    }
+  
+    const scaryTestButton = () => {
+      localStorage.clear();
+      console.log("localstorage cleared");
+    }
     
     useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +54,10 @@
               </NavLink>
             </li>
           )}
+          <li>
+          <button onClick={testButton}>Test Local</button>
+          <button onClick={scaryTestButton} >Scary Button </button>
+          </li>
         </ul>
       </nav>
     </div>

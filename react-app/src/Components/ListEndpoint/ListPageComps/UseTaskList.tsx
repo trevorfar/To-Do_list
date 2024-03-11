@@ -42,6 +42,7 @@
                 });
                 if (response.ok) {
                     console.log('Task added successfully!');
+
                     setList([...list, description]);
 
                 } else {
