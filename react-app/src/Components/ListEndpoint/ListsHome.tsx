@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import ListPage from './ListPage';
 
-const ListsHome: React.FC = () => { 
+interface ListsHomeProps{
+prop?: number;
+}
+
+const ListsHome: React.FC<ListsHomeProps> = () => { 
     const [lists, setLists] = useState<string[]>([]); // State to store the lists array
     const user_id = localStorage.getItem('user_id');
     useEffect(()=>{
@@ -31,6 +35,7 @@ const ListsHome: React.FC = () => {
 return (
 <>
             {/* {lists.map((listName, index) => ( */}
+                
                 <ListPage listName={lists[0]} lists={lists} />
              {/* ))} */}
 </>

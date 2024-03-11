@@ -12,7 +12,7 @@ const App: React.FC = () => (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Queries" element={<Queries />} />
-      <Route path="/ListsHome" element={<ListsHome/>} />
+      <Route path="/ListsHome" element={<ListsHome />} />
       </Routes>
   </Router>
 );
