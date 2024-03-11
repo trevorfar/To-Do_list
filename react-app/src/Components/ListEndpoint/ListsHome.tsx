@@ -31,7 +31,7 @@ const ListsHome: React.FC = () => {
 return (
 <>
             {/* {lists.map((listName, index) => ( */}
-                <ListPage listName={lists[0]} />
+                <ListPage listName={lists[0]} lists={lists} />
              {/* ))} */}
 </>
 )

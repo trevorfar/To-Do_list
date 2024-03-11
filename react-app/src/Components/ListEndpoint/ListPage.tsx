@@ -7,9 +7,10 @@ import './ListPage.css'
 
 interface ListPageProps { 
     listName: string;
+    lists: string[];
 }
 
-const ListPage: React.FC<ListPageProps> = ({listName}) => {
+const ListPage: React.FC<ListPageProps> = ({listName, lists}) => {
     const { list, delTask, delList  } = useTaskList(listName);
    
     return (    
@@ -19,7 +20,7 @@ const ListPage: React.FC<ListPageProps> = ({listName}) => {
                 <h1>{listName}</h1>
                     <TaskList list={list} listName={listName} delTask={delTask}  />
                     <div className="outside-card">
-                    <DropdownButton lists={list}/>
+                    <DropdownButton lists={lists}/>
                     <DeleteListButton listName={listName} delList={delList} />
                 </div>
                 </div>
