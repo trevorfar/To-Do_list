@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Routes/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
 import Queries from './Routes/Queries/Queries'
-import ListPage from './Components/ListEndpoint/ListPage'
 import ListsHome from './Components/ListEndpoint/ListsHome'
 
 const App: React.FC = () => (
@@ -14,7 +13,6 @@ const App: React.FC = () => (
       <Route path="/" element={<Home />} />
       <Route path="/Queries" element={<Queries />} />
       <Route path="/ListsHome" element={<ListsHome/>} />
-      <Route path="/:listName" element={<ListPage />} />
       </Routes>
   </Router>
 );
