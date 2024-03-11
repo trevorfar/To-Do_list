@@ -1,47 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import './dropDown.css'
-const DropdownButton: React.FC = () => {
-const [tasks, setTasks] = useState<string[]>([]);
 
+interface ButtonDropDownProps {
+  lists: string[];
+}
+
+const DropdownButton: React.FC<ButtonDropDownProps> = ( {lists}) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const user_id = localStorage.getItem('user_id');
-      const response = await fetch('http://localhost:3300/queryList', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ user_id })
-          });
-
-          if (response.ok) {
-              console.log('Task Queried successfully!');
-              const responseData = await response.json();
-              setTasks(responseData.listNames);
-              } else {
-              console.error('Failed to query:', response.statusText);
-          }
-      }
-      fetchData();
-  }, []);
 
  
   return (
     <div className="dropdown">
       <button onClick={toggleDropdown} className="dropdown-button">
-        Switch List
+      Switch List
       </button>
       {isOpen && (
         <div className="dropdown-menu">
             <ul>
-            {tasks.map((listName, index) => (
+            {lists.map((listName, index) => (
               <li key={index}>
                 <Link className="active-link-drop"to={`/${listName}`}>
                   <div className="dropdown-item">{listName}</div>

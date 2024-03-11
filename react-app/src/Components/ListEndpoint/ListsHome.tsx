@@ -30,9 +30,9 @@ const ListsHome: React.FC = () => {
     
 return (
 <>
-            {lists.map((listName, index) => (
-                <ListPage key={index} listName={listName} />
-            ))}
+            {/* {lists.map((listName, index) => ( */}
+                <ListPage listName={lists[0]} />
+             {/* ))} */}
 </>
 )
 

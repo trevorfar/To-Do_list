@@ -19,7 +19,7 @@ const ListPage: React.FC<ListPageProps> = ({listName}) => {
                 <h1>{listName}</h1>
                     <TaskList list={list} delTask={delTask}  />
                     <div className="outside-card">
-                    <DropdownButton />
+                    <DropdownButton lists={list}/>
                     <DeleteListButton listName={listName} delList={delList} />
                 </div>
                 </div>
