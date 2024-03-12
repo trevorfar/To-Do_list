@@ -6,7 +6,6 @@ const ListsHome: React.FC = () => {
     const user_id = localStorage.getItem('user_id');
 
 
-
     useEffect(()=>{
         const queryList = async () => {
             const response = await fetch('http://localhost:3300/queryList', {
@@ -31,7 +30,7 @@ const ListsHome: React.FC = () => {
     
         queryList();
     
-    }, [])
+    }, [user_id])
 
 
     return (

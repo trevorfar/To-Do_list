@@ -2,9 +2,8 @@
     // import { Redirect } from 'react-router-dom';
 
     const useTaskList = (listName: string): { list: string[], handleClick: () => void, delTask: (index: number, item: string) => void, delList: (listName: string ) => void, switchList: () => Promise<void>} => {
-        const [list, setList] = useState<string[]>([]);
-        const [listState, deleteListState] = useState<boolean>(false);
-        const [deleted, setDeleted] = useState<boolean>(false);
+        const [taskState, setTaskState] = useState<{ tasks: string[], listDeleted: boolean }>({ tasks: [], listDeleted: false });
+
 
         useEffect(() => {
             const fetchData = async () => {
@@ -20,13 +19,13 @@
                 if (response.ok) {
                     console.log('Task Achieved successfully!');
                     const responseData = await response.json();
-                    setList(responseData.tasks);
+                    setTaskState({ tasks: responseData.tasks, listDeleted: false });
                 } else {
                     console.error('Failed to query:', response.statusText);
                 }
             }
             fetchData();
-        }, [listName, listState, deleted]);
+        }, [listName, taskState.listDeleted]);
 
         const handleClick = async () => {
             const description = window.prompt('Enter task description:');
@@ -43,8 +42,10 @@
                 if (response.ok) {
                     console.log('Task added successfully!');
 
-                    setList([...list, description]);
-
+                    setTaskState(prevState => ({
+                        ...prevState,
+                        tasks: [...prevState.tasks, description]
+                    }));
                 } else {
                     console.error('Failed to add task:', response.statusText);
                 }
@@ -64,9 +65,15 @@
                 });
                 if (response.ok) {
                     console.log('Task removed successfully!');
-                    const newList = list.filter((_, idx) => idx !== index);
-                    setList(newList);
-                    setDeleted(!deleted)
+                    const newList = taskState.tasks.filter((_, idx) => idx !== index);
+                    setTaskState(prevState => ({
+                        ...prevState,
+                        tasks: newList
+                    }));
+                    // Toggle the deleted state to trigger a re-fetch of tasks
+                    setTaskState(prevState => ({
+                        ...prevState,
+                        listDeleted: !prevState.listDeleted}));
                 } else {
                     console.error('Failed to remove task:', response.statusText);
                 }
@@ -106,16 +113,22 @@
                 });
                 if (response.ok) {
                     console.log('list removed successfully!');
-                    deleteListState(true);
+                    setTaskState(prevState => ({
+                        ...prevState,
+                        listDeleted: true
+                    }));
                     // return <Redirect to="/Home" />;
                 } else {
                     console.error('Failed to remove list:', response.statusText);
-                    deleteListState(false);
+                    setTaskState(prevState => ({
+                        ...prevState,
+                        listDeleted: false
+                    }));
                 }   
             }
         }
 
-        return { list, handleClick, delTask, delList, switchList };
+        return { list: taskState.tasks, handleClick, delTask, delList, switchList };
     };
 
     export default useTaskList;
