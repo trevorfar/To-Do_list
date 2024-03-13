@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
-
-import useTaskList from './UseTaskList';
 import AddTaskForm from './AddTask';
+import DeleteTaskForm from './DeleteTask';
 
 interface TaskListProps {
-    delTask: (index: number, item: string) => void;
     listName: string;
     list: string[];
 }
@@ -12,8 +10,6 @@ const TaskList: React.FC<TaskListProps> = ({list, listName}) => {
     const [lists, setLists] = useState<string[]>([]);
 
 
-    const { delTask: delTaskHook } = useTaskList(listName);
-    
     useEffect(()=>{
         setLists(list);
     }, [list])
@@ -28,7 +24,7 @@ const TaskList: React.FC<TaskListProps> = ({list, listName}) => {
                 <li key={`item-${index}`} className="card-body">
                     <div className="task-content">{item}</div>
                     <div className="delete-container">
-                        <button className="delete" onClick={() => delTaskHook(index, item)}>-</button>
+                    <DeleteTaskForm index={index} setList={setLists} item={item}/>
                     </div>
                 </li>
             ))}
