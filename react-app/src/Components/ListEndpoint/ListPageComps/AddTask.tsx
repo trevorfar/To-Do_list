@@ -1,14 +1,33 @@
-import React from 'react';
+    import React from 'react';
 
-interface AddTaskFormProps {
-    listName: string;
-    handleClick: () => void;
-}
+    interface AddTaskFormProps {
+        listName: string;
+    }
+    const addTask = async (listName: string) => {
+        const description = window.prompt('Enter task description:');
+        const user_id = localStorage.getItem('user_id');
 
-const AddTaskForm: React.FC<AddTaskFormProps> = ({ handleClick }) => {
-    return (
-        <button className="card-body add-task" onClick={handleClick}> <b>+</b> </button>
-    );
-};
+        if (description && user_id) {
+            const response = await fetch('http://localhost:3300/addTask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_id, description, list_name: listName })
+            });
 
-export default AddTaskForm;
+            if (response.ok) {
+                console.log('Task added successfully!');
+            } else {
+                console.error('Failed to add task:', response.statusText);
+            }
+        }
+    };
+
+    const AddTaskForm: React.FC<AddTaskFormProps> = ({listName}) => {
+        return (
+            <button className="card-body add-task" onClick={()=>addTask(listName)}> <b>+</b> </button>
+        );
+    };
+
+    export default AddTaskForm;

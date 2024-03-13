@@ -3,29 +3,35 @@
 
     const useTaskList = (listName: string): { list: string[], handleClick: () => void, delTask: (index: number, item: string) => void, delList: (listName: string ) => void, switchList: () => Promise<void>} => {
         const [taskState, setTaskState] = useState<{ tasks: string[], listDeleted: boolean }>({ tasks: [], listDeleted: false });
+        const [state, setState] = useState<string[]>([]);
 
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:3300/queryTasks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ list_name: listName })
+            });
+
+            if (response.ok) {
+                console.log('Task Achieved successfully!');
+                const responseData = await response.json();
+                setTaskState({ tasks: responseData.tasks, listDeleted: false });
+
+            } else {
+                console.error('Failed to query:', response.statusText);
+            }
+        }
 
         useEffect(() => {
-            const fetchData = async () => {
-
-                const response = await fetch('http://localhost:3300/queryTasks', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ list_name: listName })
-                });
-
-                if (response.ok) {
-                    console.log('Task Achieved successfully!');
-                    const responseData = await response.json();
-                    setTaskState({ tasks: responseData.tasks, listDeleted: false });
-                } else {
-                    console.error('Failed to query:', response.statusText);
-                }
-            }
             fetchData();
-        }, [listName, taskState.listDeleted]);
+        }, [listName]);
+
+        useEffect(()=>{
+            console.log("yay");
+
+        }, [taskState])
 
         const handleClick = async () => {
             const description = window.prompt('Enter task description:');
@@ -41,11 +47,8 @@
                 });
                 if (response.ok) {
                     console.log('Task added successfully!');
-
-                    setTaskState(prevState => ({
-                        ...prevState,
-                        tasks: [...prevState.tasks, description]
-                    }));
+                    setState([...state, description]);
+                    console.log(state);
                 } else {
                     console.error('Failed to add task:', response.statusText);
                 }
@@ -70,12 +73,12 @@
                         ...prevState,
                         tasks: newList
                     }));
-                    // Toggle the deleted state to trigger a re-fetch of tasks
+                    
+                } else {
+                    console.error('Failed to remove task:', response.statusText);
                     setTaskState(prevState => ({
                         ...prevState,
                         listDeleted: !prevState.listDeleted}));
-                } else {
-                    console.error('Failed to remove task:', response.statusText);
                 }
             }
         }

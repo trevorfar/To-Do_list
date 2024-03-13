@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
 import useTaskList from './UseTaskList';
 import AddTaskForm from './AddTask';
@@ -8,14 +8,18 @@ interface TaskListProps {
     listName: string;
     list: string[];
 }
-
 const TaskList: React.FC<TaskListProps> = ({list, listName}) => {
+    const [state, setState] = useState<string>("");
+    const { delTask: delTaskHook } = useTaskList(listName);
+    
+    useEffect(()=>{
+        setState(listName);
+        console.log("CURR:" + state);
+    }, [listName, state])
 
-    const { handleClick, delTask } = useTaskList(listName);
-
-    useEffect(() => {   
-        console.log('Updated List:', listName, list);
-    }, [listName, list]);
+    function click(){
+        console.log(state);
+    }
 
     return (
         <div className="card">
@@ -25,11 +29,12 @@ const TaskList: React.FC<TaskListProps> = ({list, listName}) => {
                 <li key={`item-${index}`} className="card-body">
                     <div className="task-content">{item}</div>
                     <div className="delete-container">
-                        <button className="delete" onClick={() => delTask(index, item)}>-</button>
+                        <button className="delete" onClick={() => delTaskHook(index, item)}>-</button>
+                        <button onClick={click}>LOG</button>
                     </div>
                 </li>
             ))}
-            <AddTaskForm listName={listName} handleClick={handleClick} />
+            <AddTaskForm listName={listName} />
         </div>
     );
 };
