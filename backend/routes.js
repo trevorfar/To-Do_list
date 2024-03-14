@@ -57,7 +57,6 @@ router.post('/delTask', (req, res) =>{
 })
 router.post('/delList', (req, res) =>{
     const { user_id, list_name } = req.body;
-    console.log(list_name);
     client.query('DELETE FROM lists WHERE user_id = $1 AND list_name = $2', [user_id, list_name], (err, result) =>{
         if (err) {
             console.error('Error deleting task', err.stack);

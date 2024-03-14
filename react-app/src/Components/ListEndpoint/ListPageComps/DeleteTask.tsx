@@ -35,7 +35,7 @@ const delTask = async (index: number, item: string, setList: React.Dispatch<Reac
 
 const DeleteTaskForm: React.FC<DeleteTaskFormProps> = ({index, item, setList}) => {
     return (
-        <button className="card-body del-task" onClick={()=>delTask(index, item, setList)}> <b>+</b> </button>
+        <button className="card-body del-task" onClick={()=>delTask(index, item, setList)}> <b></b> </button>
     );
 };
 

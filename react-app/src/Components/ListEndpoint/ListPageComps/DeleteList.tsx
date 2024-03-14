@@ -31,7 +31,7 @@ const delList = async (list_name: string, navigate: (path: string) => void) => {
 const DeleteListButton: React.FC<DeleteListButtonProps> = ({ listName = "" }) => {
     const navigate = useNavigate();
     return (
-        <button className="card-body del-task" onClick={() => delList(listName, navigate)}> <p>Delete list</p> </button>
+        <button className="delete" onClick={() => delList(listName, navigate)}> <p>Delete list</p> </button>
     );
 };
 

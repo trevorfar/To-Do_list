@@ -39,8 +39,7 @@ const ListsHome: React.FC = () => {
         <>
             
         <ListPage listName={lists[Number(localStorage.getItem('index')) || 0]} lists={lists} />
-        
-        <button onClick={()=>{console.log("HEY"+lists)}}>LOG</button>
+    
         </>
     )
 }

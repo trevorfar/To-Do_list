@@ -6,7 +6,6 @@ async function findUserByUsername(username) {
     const query = 'SELECT id, username, password FROM users WHERE username = $1';
     const values = [username];
     const result = await client.query(query, values);
-    console.log(result.rows[0]);
     return result.rows[0]; // Assuming there's only one user with this username
 }
 

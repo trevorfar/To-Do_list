@@ -19,7 +19,6 @@ const addList = async (setList: React.Dispatch<React.SetStateAction<string[]>>) 
 
     if (response.ok) {
       console.log('List added successfully!');
-      console.log("123"+ list_name);
       setList((prevLists) => [...prevLists, list_name]); // Update state with new list name
     } else {
       console.error('Failed to add list:', response.statusText);

@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "../sneakyButton.tsx", "outdated/QueryDB.tsx"],
+  "include": ["src", "../sneakyButton.tsx", "outdated/QueryDB.tsx", "outdated/UseTaskList.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

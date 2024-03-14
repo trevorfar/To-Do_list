@@ -19,7 +19,6 @@
             });
 
             if (response.ok) {
-                console.log('Task added successfully!');
                 setList((prevList) => [...prevList, description]);
 
             } else {
