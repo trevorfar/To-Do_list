@@ -52,13 +52,13 @@
               Home
             </NavLink>
           </li>
-          {tasks.length > 0 && (
+          {/* {tasks.length > 0 && ( */}
             <li>
               <NavLink to={`/ListsHome`} className="active-link">
                 Lists
               </NavLink>
             </li>
-          )}
+          {/* )} */}
           <li>
           <button onClick={testButton}>Test Local</button>
           <button onClick={scaryTestButton} >Scary Button </button>

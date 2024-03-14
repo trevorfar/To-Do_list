@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ListPage from './ListPage';
-
+import Empty from './Empty'
 
 const ListsHome: React.FC = () => { 
     const [lists, setLists] = useState<string[]>([]);
@@ -30,12 +30,16 @@ const ListsHome: React.FC = () => {
         queryList();
     }, [])
 
+    if (lists.length === 0) {
+        return <Empty />; 
+    }
+
 
     return (
         <>
             
         <ListPage listName={lists[Number(localStorage.getItem('index')) || 0]} lists={lists} />
-                 
+        
         <button onClick={()=>{console.log("HEY"+lists)}}>LOG</button>
         </>
     )
