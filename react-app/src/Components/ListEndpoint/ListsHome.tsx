@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ListPage from './ListPage';
-import Empty from './Empty'
+import Empty from './AddList'
 
 const ListsHome: React.FC = () => { 
     const [lists, setLists] = useState<string[]>([]);
@@ -31,7 +31,7 @@ const ListsHome: React.FC = () => {
     }, [])
 
     if (lists.length === 0) {
-        return <Empty />; 
+        return <Empty setList={setLists}/>; 
     }
 
 
