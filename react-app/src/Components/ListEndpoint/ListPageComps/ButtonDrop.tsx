@@ -3,6 +3,8 @@ import './dropDown.css'
 
 interface ButtonDropDownProps {
   lists: string[];
+  setList: React.Dispatch<React.SetStateAction<string[]>>;
+
 }
 
 const DropdownButton: React.FC<ButtonDropDownProps> = ({lists}) => {
@@ -11,9 +13,9 @@ const DropdownButton: React.FC<ButtonDropDownProps> = ({lists}) => {
     setIsOpen(!isOpen);
   };
 
- 
   const setIndex = (index: number) => {
     localStorage.setItem('index', String(index));
+    window.location.reload()
   }
 
   return (
