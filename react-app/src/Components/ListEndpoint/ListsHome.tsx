@@ -3,7 +3,7 @@ import ListPage from './ListPage';
 
 
 const ListsHome: React.FC = () => { 
-    const [lists, setLists] = useState<string[]>([]); // State to store the lists array
+    const [lists, setLists] = useState<string[]>([]);
     
     const queryList = async () => {
         const user_id = localStorage.getItem('user_id');
@@ -18,6 +18,9 @@ const ListsHome: React.FC = () => {
         if (response.ok) {
             console.log('Task Queried successfully!');
             const responseData = await response.json();
+            if(responseData.listNames == ""){
+                console.log("EMPTY");
+            }
             setLists(responseData.listNames)
         } else {
             console.error('Failed to query:', response.statusText);
@@ -30,8 +33,10 @@ const ListsHome: React.FC = () => {
 
     return (
         <>
-            <ListPage listName={lists[Number(localStorage.getItem('index'))||0]} lists={lists} />
-            <button onClick={()=>{console.log("HEY"+lists)}}>LOG</button>
+            
+        <ListPage listName={lists[Number(localStorage.getItem('index')) || 0]} lists={lists} />
+                 
+        <button onClick={()=>{console.log("HEY"+lists)}}>LOG</button>
         </>
     )
 }

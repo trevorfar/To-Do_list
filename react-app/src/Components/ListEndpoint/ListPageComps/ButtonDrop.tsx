@@ -3,8 +3,6 @@ import './dropDown.css'
 
 interface ButtonDropDownProps {
   lists: string[];
-  setList: React.Dispatch<React.SetStateAction<string[]>>;
-
 }
 
 const DropdownButton: React.FC<ButtonDropDownProps> = ({lists}) => {

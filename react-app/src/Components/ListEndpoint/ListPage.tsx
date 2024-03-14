@@ -11,7 +11,7 @@ interface ListPageProps {
 }
 
 const ListPage: React.FC<ListPageProps> = ({listName, lists}) => {
-    const { list, delList } = useTaskList(listName);
+    const { list } = useTaskList(listName);
     
     return (    
         <>
@@ -21,7 +21,8 @@ const ListPage: React.FC<ListPageProps> = ({listName, lists}) => {
                     <TaskList list={list} listName={listName} />
                     <div className="outside-card">
                     <DropdownButton lists={lists} />
-                    <DeleteListButton listName={listName} delList={delList} />
+                    <DeleteListButton listName={listName} />
+
                 </div>
                 </div>
             </div>
