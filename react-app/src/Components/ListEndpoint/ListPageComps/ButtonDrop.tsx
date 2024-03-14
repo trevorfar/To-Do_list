@@ -12,10 +12,9 @@ const DropdownButton: React.FC<ButtonDropDownProps> = ({lists}) => {
   };
 
  
-  const printIndex = (index: number) => {
+  const setIndex = (index: number) => {
     localStorage.setItem('index', String(index));
   }
-
 
   return (
     <div className="dropdown">
@@ -26,11 +25,10 @@ const DropdownButton: React.FC<ButtonDropDownProps> = ({lists}) => {
         <div className="dropdown-menu">
             <ul>
             {lists.map((listName, index) => (
-              <li key={index} className="active-link-drop" onClick={() => { printIndex(index);  }}>
+              <li key={index} className="active-link-drop" onClick={() => { setIndex(index);  }}>
               <div className="dropdown-item">{listName}</div>
                   </li>
             ))}
-
           </ul>
         </div>
       )}
