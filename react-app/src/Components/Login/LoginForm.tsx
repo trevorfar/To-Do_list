@@ -26,20 +26,20 @@ const LoginForm: React.FC = () => {
         }
       };
 
-      /*const getProfile = async () => {
-  const token = localStorage.getItem('token');
-  if (!token) return null;
+//     const getProfile = async () => {
+//   const token = localStorage.getItem('token');
+//   if (!token) return null;
 
-  try {
-    const response = await axios.get('http://your-api-url/profile', {
-      headers: { Authorization: token },
-    });
-    return response.data.user;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};*/ 
+//   try {
+//     const response = await axios.get('http://your-api-url/profile', {
+//       headers: { Authorization: token },
+//     });
+//     return response.data.user;
+//   } catch (error) {
+//     console.error(error);
+//     return null;
+//   }
+// };
 
     return (
         <>
@@ -57,7 +57,7 @@ const LoginForm: React.FC = () => {
                         <input type="password" required value = {pass} onChange={(e)=> setPass(e.target.value)}/> <label>Password</label> 
                         </div>
 
-                        <div className="links"> <a href="#">Forgot Password</a> <a href="#">Signup</a>
+                        <div className="links"> <a href="#">Forgot Password</a> <a href="/Signup">Signup</a>
                         </div>
 
                         <div className="inputBox">

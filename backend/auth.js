@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const express = require('express');
-const router = express.Router();
+const authRouter = express.Router();
 const {validateUser } = require('./userValidation');
 
 // Secret key for JWT
@@ -15,14 +15,15 @@ function generateToken(user, user_id) {
 // Verify a JWT token
 function verifyToken(token) {
   try {
-    return jwt.verify(token, secretKey);
+    const decoded = jwt.verify(token, secretKey);
+    return decoded.id;
   } catch (error) {
     return null;
   }
 }
 
 // Example route for login
-router.post('/login', async(req, res) => {
+authRouter.post('/login', async(req, res) => {
   // Validate user credentials
   // Assuming user is an object with id and username properties
   const user = await validateUser(req.body.Username, req.body.Password);
@@ -36,7 +37,7 @@ router.post('/login', async(req, res) => {
   }
 });
 
-router.get('/profile', (req, res) => {
+authRouter.get('/profile', (req, res) => {
   const token = req.headers.authorization;
 
   if (token) {
@@ -50,4 +51,4 @@ router.get('/profile', (req, res) => {
     res.status(401).json({ message: 'No token provided' });
   }
 });
-module.exports = router;
+module.exports = {authRouter, verifyToken};

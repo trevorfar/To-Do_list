@@ -6,15 +6,23 @@ interface EmptyProps {
 
 const addList = async (setList: React.Dispatch<React.SetStateAction<string[]>>) => {
   const list_name = window.prompt('Enter List Name:');
-  const user_id = localStorage.getItem('user_id');
+  if (list_name) {
+    const token = localStorage.getItem('token');
 
-  if (list_name && user_id) {
+    if (!token) {
+      console.error('Token not found in local storage');
+      return;
+    }
+
+  if (list_name) {
     const response = await fetch('http://localhost:3300/addList', {
       method: 'POST',
       headers: {
+        Authorization: token,
         'Content-Type': 'application/json'
+
       },
-      body: JSON.stringify({ user_id, list_name })
+      body: JSON.stringify({ list_name })
     });
 
     if (response.ok) {
@@ -24,6 +32,7 @@ const addList = async (setList: React.Dispatch<React.SetStateAction<string[]>>) 
       console.error('Failed to add list:', response.statusText);
     }
   }
+}
 };
 
 const AddList: React.FC<EmptyProps> = ({ setList }) => {

@@ -5,6 +5,7 @@ import Home from './Routes/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
 import Queries from './Routes/Queries/Queries'
 import ListsHome from './Components/ListEndpoint/ListsHome'
+import SignupForm from './Components/Login/SignupForm'
 
 const App: React.FC = () => (
   <Router>
@@ -13,6 +14,7 @@ const App: React.FC = () => (
       <Route path="/" element={<Home />} />
       <Route path="/Queries" element={<Queries />} />
       <Route path="/ListsHome" element={<ListsHome />} />
+      <Route path="/Signup" element={<SignupForm />} />
       </Routes>
   </Router>
 );

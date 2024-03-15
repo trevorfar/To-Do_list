@@ -1,7 +1,7 @@
 const express = require('express');
 const client = require('./get');
 const router = express.Router();
-
+const { verifyToken } = require('./auth');
 
 router.post('/addTask', (req, res) => {
     const { user_id, description, list_name } = req.body;
@@ -18,11 +18,21 @@ router.post('/addTask', (req, res) => {
 
 
 router.post('/addList', (req, res) => {
-    const { user_id, list_name } = req.body;
+    const { list_name } = req.body;
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.status(401).send('No token provided');
+    }
+
+    const user_id = verifyToken(token);
+
+    if (!user_id) {
+        return res.status(401).send('Invalid token');
+    }
 
     client.query(`INSERT INTO lists (user_id, list_name) VALUES ($1, $2)`, [user_id, list_name], (err, result) => {
         if (err) {
-            console.error('Error inserting task:', err.stack);
+            console.error('Error Adding list:', err.stack);
             res.status(500).send('Internal Server Error');
             return;
         }
