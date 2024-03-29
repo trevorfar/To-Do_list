@@ -1,0 +1,18 @@
+/* .questions-list li {
+    background-color: lightblue;
+    padding: 5px;
+    border: 1px solid black;
+    width: 300px;
+    display: flex;
+
+}
+
+.questions li {
+    background-color: red;
+} */
+
+.questions-container{
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
