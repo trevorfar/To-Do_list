@@ -16,6 +16,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ user_id, description, list_name: listName })
+                
             });
 
             if (response.ok) {

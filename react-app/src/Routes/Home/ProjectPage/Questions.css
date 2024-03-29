@@ -13,6 +13,40 @@
 
 .questions-container{
     display: flex;
+    flex-direction: column;
     padding: 10px;
     gap: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    width: 300px;
+    border-radius: 4px;
+
+}
+.title {
+    color: white;
+    background-color: black;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.answer {
+    background-color: cyan;
+    width: auto;
+    cursor: pointer;
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    width: 100%;
+    border-radius: 4px;
+}
+
+.answer li:hover{
+background-color: white;
+}
+
+
+
+.comp {
+    cursor: pointer;
 }

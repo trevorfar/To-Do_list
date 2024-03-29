@@ -5,7 +5,9 @@ const ProjectPage: React.FC = () => {
 
 
   return(<>
+  <div className="container">
   <Questions />
+  </div>
   </>)
 }
 export default ProjectPage

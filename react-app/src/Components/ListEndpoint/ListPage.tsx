@@ -21,7 +21,6 @@ const ListPage: React.FC<ListPageProps> = ({listName, lists}) => {
                     <div className="outside-card">
                     <DropdownButton lists={lists} />
                     <DeleteListButton listName={listName} />
-
                 </div>
                 </div>
             </div>

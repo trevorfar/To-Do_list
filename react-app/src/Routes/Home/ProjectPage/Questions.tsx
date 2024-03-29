@@ -1,26 +1,19 @@
 import React from 'react'
 import './Questions.css'
 const Questions:React.FC = () => {
-  const myArray = [['Question1', 'Question2'], ['test1', 'test2']];
+  const myArray = [['Question 1', 'Question 2'], ['test 1', 'test 2']];
   return (
     <>
     <h1>Project</h1>
     <section className="questions-container">
-
-    <div className="questions">
-        <h1>Questions</h1>
-      {myArray[0].map((question, index) => (
-        <div key={index}>{question}</div>
-      ))}
+    <div className="title">{myArray[0][0]}</div>
+    <div className="question-content"></div>
+    <div className="answer">
+        <ul>
+            <li>A</li><li>B</li><li>C</li><li>D</li>
+        </ul>
     </div>
-    
-
-    <div className="questions-list">
-    <h1>Answers</h1>
-    {myArray[1].map((answer, index) => (
-          <div key={index}>{answer}</div>
-        ))}
-    </div>
+    <div className="comp">Skip</div>
     </section>
     </>
   ) 

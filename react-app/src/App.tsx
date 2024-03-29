@@ -3,18 +3,20 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Routes/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
-import Queries from './Routes/Queries/Queries'
 import ListsHome from './Components/ListEndpoint/ListsHome'
 import SignupForm from './Components/Login/SignupForm'
+import ProjectPage from './Routes/Home/ProjectPage/ProjectPage'
+
+
 
 const App: React.FC = () => (
   <Router>
     <Navbar />
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/Queries" element={<Queries />} />
+      <Route path="/" element={<ProjectPage />} />
       <Route path="/ListsHome" element={<ListsHome />} />
       <Route path="/Signup" element={<SignupForm />} />
+      <Route path="/Home" element={<Home />} />
       </Routes>
   </Router>
 );
@@ -31,5 +33,3 @@ if (app) {
 
 
 export { App };
-export { Home };
-export { Queries }; 
